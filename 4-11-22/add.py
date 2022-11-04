@@ -1,3 +1,3 @@
 a=2
 s=4
-print(a+s)
+print("the sum of two number is = ",a+s)
