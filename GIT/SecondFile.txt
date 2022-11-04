@@ -1,0 +1,5 @@
+this is the second file
+.
+.
+I've created one branch named DhirajLakhane from main(using branch cmd),
+then i did changes in READ.MD file from main branch and then reflected that changes in DhirajLakhane branch(using merge cmd)
