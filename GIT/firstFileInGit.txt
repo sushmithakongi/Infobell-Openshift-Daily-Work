@@ -1,1 +1,4 @@
 this is the first file
+.
+.
+updated by me to understand how to add,commit and push
