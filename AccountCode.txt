@@ -1,0 +1,92 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Account_MiniApp
+{
+    public delegate void Event(double amt , double balance);
+    
+    abstract class Account
+    {
+        public event Event W_event;
+        public event Event D_event;
+
+        static Account()
+        {
+            Console.WriteLine("*************************************************");
+            Console.WriteLine("*********Welcome to Bank OF Vita - PGDAC*********");
+            Console.WriteLine("*************************************************");
+        }
+
+        public static readonly double intrate = 0.07;
+        int id;
+        double balance;
+        static int getid=0;
+
+        public Account(double balance , string name) 
+        {
+            this.id = getid++;
+            this.name = name;
+            this.balance = balance;
+        }
+
+
+        public string name
+        { get; set; }
+
+        
+        public double Balance
+        {
+            get 
+            {
+                return this.balance;
+            }
+
+            protected set
+            {
+                this.balance = value;
+            }
+        }
+
+
+        public int Id
+        { 
+            get 
+            { 
+                return this.id; 
+            } 
+        }
+
+        
+
+        public abstract void Withdraw(double amt);
+
+        public void Deposit(double amt)
+        {
+            this.balance += amt;
+            if (D_event != null)
+                D_event(amt, this.balance);
+        }
+
+
+        public static double payint(Account A1)
+        {
+            double interest=0;
+            if (A1.balance > 0)
+            {
+                interest = ((A1.balance * Account.intrate) / 100);
+            }
+            A1.balance += interest;
+            return interest;
+        }
+
+        public void onWithdrawal(double amt)
+        {
+            if (W_event != null)
+                W_event(amt , this.balance);
+        }
+       
+    }
+}
