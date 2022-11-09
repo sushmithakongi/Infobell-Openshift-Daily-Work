@@ -1,5 +1,3 @@
 <<<<<<< HEAD
-I update on 4:30 11/7/2022
-=======
-that branch should be merge in master
+I edited this text file on 10/11/2022
 >>>>>>> b1
