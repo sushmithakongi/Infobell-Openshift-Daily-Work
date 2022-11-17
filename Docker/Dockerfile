@@ -1,5 +1,12 @@
-FROM python : latest
+FROM python
 
-WORKDIR ./Docker
+WORKDIR /C:/Users/Nayan Dhoble/INFOBELL/NayanD/Infobell-Openshift-Daily-Work/Docker
 
-CMD ["python" , "C:\Users\Nayan Dhoble\INFOBELL\NayanD\Infobell-Openshift-Daily-Work\Docker\add.py"]
+COPY add.py ./
+
+CMD [ "python","./add.py" ]
+
+
+
+
+
