@@ -1,6 +1,6 @@
 # Creating variables
-num1 = 40
-num2 = 16
+num1 = 116
+num2 = 32
 
 # Printing variables
 print("Variables before swapping are num1 : {} & num2 : {}".format(num1,num2))
