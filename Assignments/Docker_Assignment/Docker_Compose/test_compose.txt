@@ -1,0 +1,98 @@
+docker-compose.yml
+
+services:
+  pythonapp:
+    build: C:\Users\ANIKET\OneDrive\Documents\InfoBell\Docker\Docker_Assignment\Python
+    command: sh -c "sleep 10s ; python3 ./app.py"
+    depends_on: 
+      - mysql
+
+  mysql:
+    build: C:\Users\ANIKET\OneDrive\Documents\InfoBell\Docker\Docker_Assignment\SQL
+    restart: always
+    environment:
+      MYSQL_DATABASE: "db"
+      MYSQL_ROOT_PASSWORD: "aniket1996"
+    ports:
+    - "3306:3306"
+
+
+
+
+
+app.py
+
+import mysql.connector
+
+connection = mysql.connector.connect(
+    user="root", password="aniket1996", host="mysql", port="3306", database="db")
+
+print("Database Connected...")
+
+cursor=connection.cursor()
+cursor.execute("select * from students")
+students=cursor.fetchall()
+connection.close()
+
+print(students)
+
+
+
+
+Dockerfile(python)
+
+FROM ubuntu:latest
+
+RUN apt update
+
+RUN apt install python3 -y
+
+RUN apt install mysql-connector-python pandas
+
+WORKDIR /usr/app/src
+
+COPY app.py ./
+
+CMD ["python3", "./app.py"]
+
+
+
+
+
+database.sql
+
+use db;
+
+create table students(
+    id int not null AUTO_INCREMENT,
+    name varchar(100) not null,
+    age int not null,
+    primary key (id)
+);
+
+insert into students(name, age) 
+values("Aniket", 26), ("Sanket", 31);
+
+
+
+
+
+Dockerfile(SQL)
+
+FROM mysql:latest
+
+COPY ./database.sql ./
+
+
+
+
+
+MySQL Connection using PULL request
+
+docker pull mysql:8
+
+docker run --name test1 -e MYSQL_ROOT_PASSWORD=aniket1996 -d mysql:8
+
+docker exec test1 mysql --version
+
+docker exec -it test1 mysql -uroot -paniket1996 -e 'show databases;'

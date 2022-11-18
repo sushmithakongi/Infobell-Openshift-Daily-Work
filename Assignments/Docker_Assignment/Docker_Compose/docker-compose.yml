@@ -1,0 +1,16 @@
+version: "3.1"
+services:
+  pythonapp:
+    build: C:\Users\ANIKET\OneDrive\Documents\InfoBell\Docker\Docker_Assignment\Python
+    command: sh -c "sleep 10s ; python3 ./app.py"
+    depends_on: 
+      - mysql
+
+  mysql:
+    build: C:\Users\ANIKET\OneDrive\Documents\InfoBell\Docker\Docker_Assignment\SQL
+    restart: always
+    environment:
+      MYSQL_DATABASE: "db"
+      MYSQL_ROOT_PASSWORD: "aniket1996"
+    ports:
+    - "3307:3306"
