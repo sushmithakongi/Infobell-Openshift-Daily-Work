@@ -1,0 +1,19 @@
+version: "4"
+services:
+    localhost:
+        container_name: mydb
+        image: mysql
+        ports:
+            - "32001:3306"
+        environment:   
+          MYSQL_ROOT_PASSWORD: Dhiraj@123
+          MYSQL_DATABASE: redbus
+          MYSQL_USER: root
+          MYSQL_PASSWORD: Dhiraj@123
+    app:
+        container_name: myapp
+        links:
+            - "localhost"
+        build: ./
+        ports:
+            - "5001:5000"
