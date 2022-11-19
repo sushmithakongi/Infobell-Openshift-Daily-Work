@@ -1,0 +1,16 @@
+version: "4"
+services:
+    App:
+        build:./App
+        ports:
+            - "5432"
+    DB:
+        build : ./DB
+        ports:
+            -8080:8080
+        enviroment:
+            DB_hostname = 'localhost'
+            POSTGRES_DB = 'restaurants'
+            POSTGRES_USER = 'postgres'
+            POSTGRES_PASSWORD = 'postgress'
+        restart : always
