@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+ web:
+  build:
+   context: .
+  ports:
+  - 8000:5000
+  volumes:
+  - ./:/app
+
+   export FLASK_APP=Connection.py
