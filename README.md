@@ -6,3 +6,4 @@ This repository contains the daily work of the training taken.
 2. Linux
 3. Shell Scripting
 4. Docker
+5. Kubernetes
