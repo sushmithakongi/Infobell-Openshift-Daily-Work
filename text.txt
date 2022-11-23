@@ -1,3 +1,0 @@
-<<<<<<< HEAD
-I edited this text file on 24/11/2022
->>>>>>> b1
