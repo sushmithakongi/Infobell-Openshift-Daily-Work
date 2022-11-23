@@ -1,0 +1,16 @@
+version: "3.1"
+services:
+  pythonapp:
+    build: F:\Infobell_Training\Docker_training\docker_assignment\python
+    command: sh -c "sleep 10s ; python3 ./app.py"
+    depends_on:
+      - mysql
+  
+  mysql:
+    build: F:\Infobell_Training\Docker_training\docker_assignment\sql
+    restart: always
+    environment:
+      MYSQL_DATABASE: "dockerdemo"
+      MYSQL_ROOT_PASSWORD: "Psai@777"
+    ports:
+    - "3307:3306"
