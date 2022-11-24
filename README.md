@@ -7,3 +7,4 @@ This repository contains the daily work of the training taken.
 3. Shell Scripting
 4. Docker
 5. Kubernetes
+6. Openshift

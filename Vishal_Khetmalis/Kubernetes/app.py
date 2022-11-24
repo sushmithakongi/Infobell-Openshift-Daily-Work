@@ -6,8 +6,8 @@ if __name__ == "__main__":
     st.title('Restaurant Management System')
     st.write(""" Address : Maharashtra, India """)
 
-    #hostname = 'host.docker.internal'
-    hostname = 'localhost'
+    hostname = 'host.docker.internal'
+    #hostname = 'localhost'
     database = 'restaurants'
     username = 'postgres'
     pwd = 'postgress'
