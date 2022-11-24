@@ -1,0 +1,21 @@
+services:
+  database:
+    image: postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: malkeet
+
+  app:
+      #container_name: myapp
+    depends_on:
+      - database
+    restart: always
+    build: ./
+    ports:
+      - "5001:5000"
+
+
