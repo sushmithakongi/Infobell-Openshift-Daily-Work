@@ -3,6 +3,8 @@ services:
  Spring-bootapp:
    #container name: 
    image: springboot-app
+   links:
+    - mysqldb
    restart: always
    build: .
    ports:
@@ -12,15 +14,15 @@ services:
      MYSQL USER: root
      MYSQL_PASSWORD: root
      MYSQL_PORT: 3309
-     SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3309/test?autoReconnect=true&useSSL=false
+     SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3308/test?autoReconnect=true&useSSL=false
    
     
 
  mysqldb:
     container_name: mysqldb
-    image: mysql
+    image: mysql/mysql-server:5.7
     ports:
-    - 3309:3309
+    - 3308:3308
     environment:
      MYSQL_DATABASE: test
      MYSQL_ROOT_PASSWORD: root
