@@ -1,0 +1,34 @@
+
+version: "3.8"
+services:
+  postgres:
+    build: 
+      context: .          
+    container_name: postgres
+    image: prathmeshd/final:final2
+    #image : server/db:postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      #POSTGRES_PASSWORD: 1234567890
+      POSTGRES_PASSWORD: postgres
+      # Optional: Give a name to the database, otherwise
+      # use the default value POSTGRES_USER as a database name (user in this case.)
+      POSTGRES_DB: cdac1
+
+  python:
+    build: ./
+    image: prathmeshd/final:final1
+    container_name: python
+    #command: python bulkload.py
+    
+    ports:
+      - 5002:5000
+    volumes:
+    
+      - ./:/app
+    #networks:
+     # - app-network'''
+    depends_on:
+      - "postgres"
+    restart: always
