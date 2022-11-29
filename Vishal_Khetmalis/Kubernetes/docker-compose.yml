@@ -1,16 +1,5 @@
 version: "4"
 services:
-    localhost:
-        #container_name: mydb
-        image: postgres
-        ports:
-            - 5432:5432
-        restart: always
-        environment:   
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgress
-          POSTGRES_DB: restaurants
-        
     app:
         #container_name: myapp
         depends_on:
@@ -18,7 +7,20 @@ services:
         restart: always
         build: ./
         ports:
-            - "8501:8500"
+            - "8500:8501"
+        
+    localhost:
+        #container_name: mydb
+        image: postgres
+        volumes:
+            - /private/var/lib/postgresql:/var/lib/postgresql
+        ports:
+            - 5432:5432
+        restart: always
+        environment:   
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgress
+          POSTGRES_DB: restaurants
 
 # version: "4"
 # services:
