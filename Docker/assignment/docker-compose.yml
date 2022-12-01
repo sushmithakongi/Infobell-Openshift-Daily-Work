@@ -1,0 +1,42 @@
+
+version: "3.8"
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sai@123
+      # Optional: Give a name to the database, otherwise
+      # use the default value POSTGRES_USER as a database name (user in this case.)
+      POSTGRES_DB: students
+
+  python:
+    build: ./
+    ports:
+      - 5002:5000
+    volumes:
+      - ./:/app
+    #networks:
+     # - app-network'''
+    depends_on:
+      - "postgres"
+    restart: always
+
+# version: "2"
+# services:
+#   app:
+#     build: ./app
+#     links:
+#       - db
+#     ports:
+#       - "5000:5000"
+
+#   db:
+#     image: mysql:5.7
+#     ports:
+#       - "32000:3306"
+#     environment:
+#       MYSQL_ROOT_PASSWORD: Psai@777
+#     volumes:
+#       - ./db:/docker-entrypoint-initdb.d/:ro
