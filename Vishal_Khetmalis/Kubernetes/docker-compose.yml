@@ -1,42 +1,57 @@
-version: "4"
+version: "3.8"
 services:
-    app:
-        #container_name: myapp
-        depends_on:
-            - localhost
-        restart: always
-        build: ./
-        ports:
-            - "8500:8501"
-        
-    localhost:
-        #container_name: mydb
-        image: postgres
-        volumes:
-            - /private/var/lib/postgresql:/var/lib/postgresql
-        ports:
-            - 5432:5432
-        restart: always
-        environment:   
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgress
-          POSTGRES_DB: restaurants
+  postgres:
+    build: 
+      context: .          
+    container_name: postgres
+    image: vishalkhetmalis/project:database
+    #image : server/db:postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      #POSTGRES_PASSWORD: 1234567890
+      POSTGRES_PASSWORD: postgress
+      # Optional: Give a name to the database, otherwise
+      # use the default value POSTGRES_USER as a database name (user in this case.)
+      POSTGRES_DB: restaurants
+
+  python:
+    build: ./
+    image: vishalkhetmalis/project:python
+    container_name: python
+    #command: python bulkload.py
+    
+    ports:
+      - 5002:5000
+    volumes:
+    
+      - ./:/app
+    #networks:
+     # - app-network'''
+    depends_on:
+      - "postgres"
+    restart: always
 
 # version: "4"
 # services:
 #     app:
-#         build : ./Dockerfile
+#         container_name: myapp
+#         depends_on:
+#             - localhost
+#         restart: always
+#         build: ./
 #         ports:
-#             -'8501:8501'
-#         enviroment:
-#             POSTGRES_USER = 'postgres'
-#             POSTGRES_PASSWORD = 'postgress'
-#         restart : always
-#     db:
+#             - "8500:8501"
+        
+#     localhost:
+#         container_name: mydb
 #         image: postgres
+#         volumes:
+#             - /private/var/lib/postgresql:/var/lib/postgresql
 #         ports:
-#             -'5432:5432'
-#         enviroment:
-#             POSTGRES_USER = 'postgres'
-#             POSTGRES_PASSWORD = 'postgress'
-#         restart : always
+#             - 5432:5432
+#         restart: always
+#         environment:   
+#           POSTGRES_USER: postgres
+#           POSTGRES_PASSWORD: postgress
+#           POSTGRES_DB: restaurant

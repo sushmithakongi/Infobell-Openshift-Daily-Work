@@ -8,3 +8,6 @@ This repository contains the daily work of the training taken.
 4. Docker
 5. Kubernetes
 6. Openshift
+7. Agile
+8. Jira
+9. Cloud Computing
